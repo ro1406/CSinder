@@ -36,6 +36,7 @@ class User(db.Model):
     picture = db.Column(BLOB)
     # POST function: image = request.files['image'].read()
     # user=User(...., picture=image)
+    #intro=db.Column(db.String(500))
     
     workedOn = db.relationship('Project',secondary=workedOn)#Projects the user has worked on
     
@@ -132,13 +133,8 @@ if __name__ == '__main__':
     user1 = User(name="Rohan",username="ro",password="ropass",userID="U12345",email="rohanmitra8@gmail.com",experience=4)
     user2 = User(name="Ali Soufi",username="AliWali",password="alipass",userID="U11223",email="alisoufi7@gmail.com",experience=2)
     user3 = User(name = "Dara", username = "DRaw", password = "Dpass", userID = "U11111" , email = "dara7varam@gmail.com", experience = 1 )
-    
-    # db.session.add_all([user,proj1,proj2])
-    
     user4 = User(name="Issa",username="isss",password="issapass",userID="U82222",email="IssaNajjar@gmail.com",experience=0)
-    # user5 = User(name="John Smith",username="JohnWon",password="12345",userID="U81313",email="WangDang@gmail.com",experience=5)
-    # user6 = user4 = User(name="Jennifer",username="Jennifer123",password="12333",userID="U78789",email="Jenni@gmail.com",experience=3)
-    
+
     db.session.add_all([user1,user2,user3,user4 ])
     
     user5 = User(name="John Smith",username="JohnWon",password="12345",userID="U81313",email="WangDang@gmail.com",experience=5)
@@ -266,6 +262,28 @@ if __name__ == '__main__':
     applied7 = AppliedTo(userID = "U11223", projID = "P88772")
     db.session.add_all([applied1, applied2, applied3, applied4, applied6, applied5,applied7 ])
     
+    
+    '''Project Languages '''
+    projlang1 = ProjLang(projID='P84282',language="ASP")
+    projlang2 = ProjLang(projID='P93882',language="C")
+    projlang3 = ProjLang(projID='P84282',language="C#")
+    projlang4 = ProjLang(projID='P55442',language="C++")
+    projlang5 = ProjLang(projID='P84282',language="Objective C")
+    projlang6 = ProjLang(projID='P93882',language="Erlang")
+    projlang7 = ProjLang(projID='P56352',language="Git")
+    projlang8 = ProjLang(projID='P55442',language="Go")
+    projlang9 = ProjLang(projID='P56352',language="Haskell")
+    projlang10 = ProjLang(projID='P93882',language="HTML")
+    projlang11 = ProjLang(projID='P84282',language="Java")
+    projlang12 = ProjLang(projID='P84282',language="Javascript")
+    projlang13 = ProjLang(projID='U82222',language="LaTeX")
+    projlang14 = ProjLang(projID='P55442',language="Lisp")
+    projlang15 = ProjLang(projID='P93882',language="MATLAB")
+    projlang16 = ProjLang(projID='P84282',language="Perl")
+    projlang17 = ProjLang(projID='P84282',language="PHP")
+    projlang18 = ProjLang(projID='P56352',language="Python")
+    projlang19 = ProjLang(projID='P55442',language="R")
+    projlang20 = ProjLang(projID='P84282',language="SQL")
     
     db.session.commit()
     

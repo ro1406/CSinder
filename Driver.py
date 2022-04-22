@@ -25,7 +25,7 @@ def home():
 def about():
    return render_template("About.html")
 
-@app.route("/Manage",methods=["GET","POST"])
+@app.route("/Manage/<us>",methods=["GET","POST"])
 def manage(us): #Put us in here
     #us='U11223'
     appsTo=AppliedTo.query.filter_by(userID=us).all() #Object of AppliedTo
@@ -53,13 +53,13 @@ def manage(us): #Put us in here
         myprojs.append(Project.query.filter_by(projID=row.projID).one().name)
         
     if request.method=="GET":
-        return render_template("ManagePr.html",applicationsTo=appTo, applicationsFrom=appFrom,myProj=myprojs)
+        return render_template("ManagePr.html",applicationsTo=appTo, applicationsFrom=appFrom,myProj=myprojs,userID=us)
     
     else:
         for app in appFrom:
-            if 'accept-btn '+str(app[1]) not in request.form.keys():
+            if 'accept-btn '+str(app[1]) not in request.form.keys() and 'reject-btn '+str(app[1]) not in request.form.keys():
                 continue
-            if request.form['accept-btn '+str(app[1])]:
+            if 'accept-btn '+str(app[1]) in request.form.keys() and request.form['accept-btn '+str(app[1])]:
                 appFrom.remove(app)
                 #Adjust DB
                 #ProjID and UserID:
@@ -71,8 +71,8 @@ def manage(us): #Put us in here
                 db.session.merge(row)
                 db.session.flush()
                 db.session.commit()
-                break
-            elif request.button['reject-btn '+str(app[1])]:
+                #break
+            elif 'reject-btn '+str(app[1]) in request.form.keys() and request.form['reject-btn '+str(app[1])]:
                 appFrom.remove(app)
                 #Adjust DB
                 #ProjID and UserID:
@@ -84,9 +84,9 @@ def manage(us): #Put us in here
                 db.session.merge(row)
                 db.session.flush()
                 db.session.commit()
-                break
+                #break
         db.session.commit()
-        return render_template("ManagePr.html",applicationsTo=appTo, applicationsFrom=appFrom,myProj=myprojs)
+        return render_template("ManagePr.html",applicationsTo=appTo, applicationsFrom=appFrom,myProj=myprojs,userID=us)
         
         
 
@@ -163,9 +163,9 @@ def checkLogin():
 #Account page needs to be customizable
 @app.route("/Account/<us>")
 def profile(us):
-    profile=User.query.filter_by(userID=us)
+    profile=User.query.filter_by(userID=us).first()
     
-    return render_template("Logged.html",profile=profile)
+    return render_template("Logged.html",profile=profile,userID=us)
 
 @app.route("/register")
 def register():
@@ -237,7 +237,7 @@ def projectsLoggedIn(us):
         allLangs=CodesIn.query.filter_by(userID=us).all()
         langs=[x.language for x in allLangs]
         
-        yoe=User.query.filter_by(username=us).one().experience
+        yoe=User.query.filter_by(userID=us).one().experience
                 
         projRanks=[] #[Proj Object, score]
         #Adding some ranking system:
@@ -249,7 +249,7 @@ def projectsLoggedIn(us):
             plang=ProjLang.query.filter_by(projID=proj.projID).all()
             projLang=[x.langauge for x in plang]
             
-            difficulty=Project.query.filter_by(projID=proj.ID).one().difficulty
+            difficulty=Project.query.filter_by(projID=proj.projID).one().difficulty
             
             #Check for matches:
             score=0

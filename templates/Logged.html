@@ -18,8 +18,8 @@
     <div class="topnav">
         <img class="u-expanded-height u-image u-image-default u-preserve-proportions u-image-1" src="{{url_for('static', filename='images/61a4b5b8907749e29dac4861893bbcca1.png')}}" alt="" data-image-width="200" data-image-height="99">
             <a class="active">Profile</a>
-            <a href="{{url_for('projectsLoggedIn')}}">Projects</a>
-            <a href="{{url_for('manage')}}">Project Management</a>
+            <a href="{{url_for('projectsLoggedIn',us=userID)}}">Projects</a>
+            <a href="{{url_for('manage',us=userID)}}">Project Management</a>
       </div>
 </header>
 
@@ -38,15 +38,15 @@
                             <div class="form-group">
                                 <div class="form-input">
                                     <h3>Name</h3>
-                                    <p id="AccName">Ali</p>
+                                    <p id="AccName">{{profile.name}}</p>
                                 </div>
                                 <div class="form-input">
                                     <h3>Contact Email</h3>
-                                    <p id="AccEmail">b00078789@aus.edu</p>
+                                    <p id="AccEmail">{{profile.email}}</p>
                                 </div>
                                 <div class="form-input">
                                     <h3>Years of experience</h3>
-                                    <p id="AccYoE">3 Years</p>
+                                    <p id="AccYoE">{{profile.experience}} Years</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -54,18 +54,18 @@
                                     <div class="label-flex">
                                         <h3 id = "AccProLanguages">Known Languages</h3>
                                     </div>
-                                    <div class="form-radio-group">            
+                                    
+                                    <div class="form-radio-group">  
+                                        {% for lang in profile.codesIn %}          
                                         <div class="form-radio-item">
-                                            <p>Python</p>
+                                            <p>{{lang.language}}</p>
                                         </div>
-                                        <div class="form-radio-item">
-                                            <p>C++</p>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 <div class="form-input">
                                     <label>Github link</label>
-                                    <a href="github.com" id = "AccGithub">github.com</a>
+                                    <a href="github.com" id = "AccGithub">{{profile.github}}</a>
                                 </div>
                                 
                             </div>
