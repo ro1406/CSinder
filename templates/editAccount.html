@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Account</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/nouislider/nouislider.min.css')}}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <div class = "backimg"></div>
+                    <div class="signup-img-content">
+                        <h2>Edit your account</h2>
+                    </div>
+                </div>
+                <div class="signup-form">
+                    <form method="POST" class="register-form" id="register-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="email" id="name" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="email">Contact Email</label>
+                                    <input type="text" name="email" id="email" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="YoE">Years of experience</label>
+                                    <input type="text" name="YoE" id="YoE" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-radio">
+                                    <div class="label-flex">
+                                        <label for="ProLang">Known Languages</label>
+                                    </div>
+                                    <div class="form-radio-group">            
+                                        <div class="form-radio-item">
+                                            <input type="checkbox" name="payment" id="ProLang1">
+                                            <label for="ProLang1">Python</label>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="checkbox" name="payment" id="ProLang2">
+                                            <label for="ProLang2">C++</label>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="checkbox" name="payment" id="ProLang3">
+                                            <label for="ProLang3">Java</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-input">
+                                    <label for="Github">Github link</label>
+                                    <input type="text" name="Github" id="Github" />
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <label for="big_texty">Introduce Yourself!</label>
+                        <textarea class ="text_box" id="big_texty" name = "big_texty"></textarea>
+                        <div class="form-submit">
+                            <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
+                            <input type="submit" value="Reset" class="submit" id="reset" name="reset" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/nouislider/nouislider.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/wnumb/wNumb.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/jquery-validation/dist/additional-methods.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>
+</html>

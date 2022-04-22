@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Account Details</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/nouislider/nouislider.min.css')}}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style2.css')}}">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <div class = "backimg"></div>
+                    <div class="signup-img-content">
+                        <h2>Account details</h2>
+                    </div>
+                </div>
+                <div class="signup-form">
+                    <div class="register-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <h3>Name</h3>
+                                    <p id="AccName">Ali</p>
+                                </div>
+                                <div class="form-input">
+                                    <h3>Contact Email</h3>
+                                    <p id="AccEmail">b00078789@aus.edu</p>
+                                </div>
+                                <div class="form-input">
+                                    <h3>Years of experience</h3>
+                                    <p id="AccYoE">3 Years</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-radio">
+                                    <div class="label-flex">
+                                        <h3 id = "AccProLanguages">Known Languages</h3>
+                                    </div>
+                                    <div class="form-radio-group">            
+                                        <div class="form-radio-item">
+                                            <p>Python</p>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <p>C++</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-input">
+                                    <label>Github link</label>
+                                    <a href="github.com" id = "AccGithub">github.com</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <h3 for="big_texty">Introduce Yourself!</h3>
+                        <p id="AccIntro">Coding for 3 years now, experience with data science projects, currently a 4th year student blah blah blah</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/nouislider/nouislider.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/wnumb/wNumb.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/jquery-validation/dist/additional-methods.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create your project!</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendorProjectForm/nouislider/nouislider.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <div class = "backimg"></div>
+                    <div class="signup-img-content">
+                        <h2>Project Creation</h2>
+                        <p>Make sure to include details!</p>
+                    </div>
+                </div>
+                <div class="signup-form">
+                    <button onclick="window.location.href = '{{url_for('projects')}}'" class="exit_btn">X</button>
+                    <form method="POST" class="register-form" id="register-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <label for="title">Project Title</label>
+                                    <input type="text" name="title" id="title" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="creator">Creator/Company</label>
+                                    <input type="text" name="creator" id="creator" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="Github">Github Repository</label>
+                                    <input type="text" name="Github" id="Github" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-select">
+                                    <div class="label-flex">
+                                        <label for="meal_preference">Category</label>
+                                    </div>
+                                    <div class="select-list">
+                                        <select name="meal_preference" id="meal_preference">
+                                            <option></option>
+                                            <option value="DS">Data Science</option>
+                                            <option value="WD">Web Development</option>
+                                            <option value="AD">Algorithm Development</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-radio">
+                                    <div class="label-flex">
+                                        <label for="lang">Languages</label>
+                                    </div>
+                                    <div class="form-radio-group">            
+                                        <div class="form-radio-item">
+                                            <input type="checkbox" name="lang" id="python">
+                                            <label for="python">Python</label>
+                                            <span class="check"></span>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="checkbox" name="lang" id="c++">
+                                            <label for="c++">C++</label>
+                                            <span class="check"></span>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="checkbox" name="lang" id="java">
+                                            <label for="java">Java</label>
+                                            <span class="check"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-input">
+                                    <label for="email">Contact Email</label>
+                                    <input type="text" name="email" id="email" />
+                                </div>
+                            </div>
+                        </div>
+                        <label for="big_texty">Description of Project</label>
+                        <textarea class ="text_box" id="big_texty" name = "big_texty"></textarea>
+                        <div class="form-submit">
+                            <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
+                            <input type="submit" value="Reset" class="submit" id="reset" name="reset" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{{url_for('static', filename='vendorProjectForm/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendorProjectForm/nouislider/nouislider.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendorProjectForm/wnumb/wNumb.js')}}"></script>
+    <script src="{{url_for('static', filename='vendorProjectForm/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendorProjectForm/jquery-validation/dist/additional-methods.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>
+</html>
