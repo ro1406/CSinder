@@ -188,7 +188,7 @@ def checkregistration():
         
         return redirect(url_for('login'))
 
-@app.route("/createProject",methods=['GET',"POST"])
+@app.route("/createProject/<us>",methods=['GET',"POST"])
 def createProject(us):
     if request.method=="GET":
         return render_template("CreateProject.html",userID=us)
@@ -196,8 +196,8 @@ def createProject(us):
         name=request.form['title']
         #creatorName=request.form['creator'] #Find their ID and update all tables
         github=request.form['Github']
-        choice=request.form['meal_preference']
-        email=request.form['email']
+        choice=request.form.get('meal_preference')#request.form['meal_preference']
+        choice='Data Science'
         desc=request.form['big_texty']
         lang=request.form['lang']
         
@@ -221,6 +221,7 @@ def createProject(us):
         db.session.commit()
         
         db.session.add(newProj)
+        db.session.flush()
         db.session.commit()
         return redirect(url_for('projectsLoggedIn'),userID=us)
         

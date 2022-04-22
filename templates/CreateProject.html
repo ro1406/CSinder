@@ -30,7 +30,7 @@
                 </div>
                 <div class="signup-form">
                     <button onclick="window.location.href = '{{url_for('projects')}}'" class="exit_btn">X</button>
-                    <form method="POST" action="{{url_for('createProject')}}" class="register-form" id="register-form">
+                    <form method="POST" action="{{url_for('createProject',us=userID)}}" class="register-form" id="register-form">
                         <div class="form-row">
                             <div class="form-group">
                                 <div class="form-input">
