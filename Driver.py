@@ -101,7 +101,7 @@ def checkLogin():
 def profile():
     profile=User.query.filter_by(username="ro")
     
-    return render_template("Account-Page.html",profile=profile)
+    return render_template("Logged.html",profile=profile)
 
 @app.route("/register")
 def register():
@@ -123,7 +123,7 @@ def checkregistration():
 def createProject():
    return render_template("CreateProject.html")
 
-@app.route("/Projects",methods=['GET',"POST"])
+@app.route("/ProjectsLoggedIn",methods=['GET',"POST"])
 def projectsLoggedIn():
     if request.method=='GET':
         #Query DB and send in list of all projects into the html file:
