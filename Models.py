@@ -135,7 +135,7 @@ if __name__ == '__main__':
     
     # db.session.add_all([user,proj1,proj2])
     
-    #user4 = User(name="Issa",username="isss",password="issapass",userID="U82222",email="IssaNajjar@gmail.com",experience=0)
+    user4 = User(name="Issa",username="isss",password="issapass",userID="U82222",email="IssaNajjar@gmail.com",experience=0)
     # user5 = User(name="John Smith",username="JohnWon",password="12345",userID="U81313",email="WangDang@gmail.com",experience=5)
     # user6 = user4 = User(name="Jennifer",username="Jennifer123",password="12333",userID="U78789",email="Jenni@gmail.com",experience=3)
     
@@ -156,11 +156,16 @@ if __name__ == '__main__':
     #userToAdd.workedOn.remove(projToRemove)
     #db.session.commit()
     
-    ''' ONE TO MANY RELATIONSHIPS '''
-    proj1 = Project(name="Proj1",projID="P12345",description="test project",difficulty=3,user=user1)
-    proj2 = Project(name="Proj2",projID="P12346",description="test project number 2",difficulty=1,user=user2)
-    proj3 = Project(name="Proj3",projID="P12347",description="test project number 3",difficulty=5,user=user3)
-    db.session.add_all([user1,user2,user3,proj1,proj2,proj3])
+    ''' ONE TO MANY RELATIONSHIPS '''    
+    
+    proj1 = Project(name="ML Sample Project",projID="P84282",description="Quisque eget vehicula tortor. Pellentesque iaculis turpis magna, at rutrum felis scelerisque id. Sed pharetra enim eros, sit amet cursus metus laoreet vitae. Praesent nec mollis nulla, et pulvinar mi. Mauris porttitor, ligula ac blandit molestie, diam dui tempor augue, mollis condimentum nisi mauris eu mauris.",difficulty=3,user=user1)
+    proj2 = Project(name="Programming in Games Project",projID="P93882",description="Morbi mollis magna sit amet mauris rutrum malesuada. Integer tortor nisi, mollis sed vestibulum sit amet, consequat eu erat. ",difficulty=1,user=user2)
+    proj3 = Project(name="WoWo Game Design Graphics",projID="P98387",description="Maecenas diam augue, bibendum et commodo ac, convallis sed dui. Fusce fermentum enim non urna accumsan dictum. Proin tempor pharetra leo eu tincidunt.",difficulty=5,user=user3)
+    proj4 = Project(name="Anime Neural Networks",projID="P88772",description="Cras a enim vitae turpis finibus cursus sit amet non risus. Quisque nulla eros, luctus sed lorem eget, fringilla facilisis lectus. Mauris quis commodo mauris, eu tempor turpis.",difficulty=2,user=user3)
+    proj5 = Project(name="Wonky Networking LMAOO",projID="P56352",description="Curabitur ornare metus ut mauris bibendum vulputate. Maecenas ac condimentum libero. Nam magna nulla, scelerisque eu maximus euismod, imperdiet sit amet tortor.",difficulty=2,user=user2)
+    proj6 = Project(name="UML Design for AI",projID="P88372",description="Phasellus dictum maximus nisi, vitae interdum mi volutpat et. Vivamus placerat pretium metus vel tincidunt. Donec vestibulum tortor non porttitor ultrices.",difficulty=4,user=user1)
+    proj7 = Project(name="Homework Help?!",projID="P55442",description="enean convallis risus in massa imperdiet mattis. Sed sem nunc, consectetur id ipsum eu, sagittis scelerisque mi. Maecenas non imperdiet felis.",difficulty=4,user=user4)
+    db.session.add_all([proj1,proj2,proj3, proj4, proj5, proj6, proj7])
     db.session.commit()
     
     

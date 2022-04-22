@@ -11,7 +11,7 @@ import random
 from random import randrange
 
 
-from Models import User,Project,ProjLang
+from Models import User,Project,ProjLang,ProjectAreas
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///CSinder.db'
@@ -122,7 +122,7 @@ def checkregistration():
 @app.route("/createProject",methods=['GET',"POST"])
 def createProject(us):
     if request.method=="GET":
-        return render_template("CreateProject.html")
+        return render_template("CreateProject.html",username=us)
     else:
         name=request.form['title']
         #creatorName=request.form['creator'] #Find their ID and update all tables
@@ -143,14 +143,20 @@ def createProject(us):
         #Get record of creator
         user1=User.query.filter_by(username=us).one()
         
-        newProj=Project(name=name,projID=ProjID,description=desc,difficulty=3,user=user1) 
+        newProj=Project(name=name,projID=ProjID,description=desc,difficulty=3,user=user1,github=github) 
+        area=ProjectAreas(projID=ProjID,areaOfInterest=choice)
+        lang=ProjLang(projID=ProjID,language=lang)
+        
+        db.session.add(lang)
+        db.session.add(area)
+        db.session.commit()
         
         db.session.add(newProj)
         db.session.commit()
         return redirect(url_for('projectsLoggedIn'),username=us)
         
 
-@app.route("/Projects",methods=['GET',"POST"])
+@app.route("/Projects/<us>",methods=['GET',"POST"])
 def projectsLoggedIn(us):
     if request.method=='GET':
         #Query DB and send in list of all projects into the html file:
