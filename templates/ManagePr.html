@@ -55,59 +55,57 @@
       </div></header>
     <section class="u-align-center u-clearfix u-palette-3-light-2 u-section-1" id="carousel_cd3c">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <h1 class="u-text u-text-default u-white-text u-text-2">Project Management.</h1>
+        <h1 class="u-text u-text-default u-white-text u-text-2">Project Management</h1>
         <div class="u-list u-list-1">
           <div class="u-repeater u-repeater-1">
+
             <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
                 <h4 class="u-text u-text-default u-text-palette-1-base u-text-3">Applications To</h4>
+                
+                {% for app in applicationsTo %}
                 <div>
-                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:left">Ali's Project</p>
-                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:right">Pending</p>
+                  <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:left">{{app[0]}}</p>
+                  <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:right">{{app[1]}}</p>
                 </div>
                 <hr noshade>
-                <div>
-                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:left">Rohan's Project</p>
-                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:right">Accepted</p>
-                </div>
-                <hr noshade>
-                <div>
-                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:left">Rohan's Project</p>
-                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:right">Accepted</p>
-                </div>
-                <hr noshade>
+
+                {% endfor %}
               </div>
             </div>
+
+
             <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-2">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
                 <h4 class="u-text u-text-default u-text-palette-1-base u-text-5">Applications From</h4>
-                <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:center">Neural Network Machine</p>
+
+                {% for app in applicationsFrom %}
+                <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:center">{{app[0]}}</p>
                 <div>
-                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:left">Ali</p>
+                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:left">{{app[1]}}</p>
                     <div style = "float:right">
-                        <button class = 'button-3' name = "accept-btn">Accept</button>
-                        <button class = 'button-4' name = "reject-btn">Reject</button>
+                      <form method="POST" action="{{url_for('manage')}}">
+                        <input type="submit" class="button-3" name="accept-btn {{app[1]}}" value="Accept"></input>
+                        <input type="submit" class="button-4" name="reject-btn {{app[1]}}" value="Reject"></input>
+                      </form>
                     </div>
                 </div>
                 <hr noshade>
-                <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:center">Neural Network Machine</p>
-                <div>
-                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:left">Issa</p>
-                    <div style = "float:right">
-                        <button class = 'button-3' name = "accept-btn">Accept</button>
-                        <button class = 'button-4' name = "reject-btn">Reject</button>
-                    </div>
-                </div>
-                <hr noshade>
+                {% endfor %}
+
+              
               </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-3">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
                 <h4 class="u-text u-text-default u-text-palette-1-base u-text-7">My Projects</h4>
+                {% for name in myProj %}
                 <div>
-                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:left">Neural Network Machine</p>
+                    <p class="u-text u-text-palette-1-dark-2 u-text-4" style ="float:left">{{name}}</p>
                 </div>
-                <hr noshade>              </div>
+                <hr noshade>              
+                {% endfor %}
+              </div>
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ import random
 from random import randrange
 
 
-from Models import User,Project,ProjLang,ProjectAreas,InterestedIn,CodesIn
+from Models import User,Project,ProjLang,ProjectAreas,InterestedIn,CodesIn,worksIn,AppliedTo
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///CSinder.db'
@@ -25,9 +25,70 @@ def home():
 def about():
    return render_template("About.html")
 
-@app.route("/Manage")
-def manage():
-   return render_template("ManagePr.html")
+@app.route("/Manage",methods=["GET","POST"])
+def manage(): #Put us in here
+    us='U11223'
+    appsTo=AppliedTo.query.filter_by(userID=us).all() #Object of AppliedTo
+    appTo=[] #[[projName,PendingConfirmation?]]
+    for a in appsTo:
+        if a.pendingConfirmation:
+            appTo.append([Project.query.filter_by(projID=a.projID).one().name,'Pending'])
+        elif a.accepted:
+            appTo.append([Project.query.filter_by(projID=a.projID).one().name,'Accepted'])
+        else:
+            appTo.append([Project.query.filter_by(projID=a.projID).one().name,'Rejected'])
+            
+        
+    userWorksIn= Project.query.filter_by(creatorID=us).all() #worksIn.query.filter_by(userID=us).all()
+    appFrom=[] #[[projName,personName]]
+    for row in userWorksIn:
+        temp=AppliedTo.query.filter_by(projID=row.projID).all()#Who all have applied to that project
+        for r2 in temp:
+            if r2.pendingConfirmation:
+                #Get project and person name
+                appFrom.append([Project.query.filter_by(projID=r2.projID).first().name,User.query.filter_by(userID=r2.userID).first().name])
+    
+    myprojs=[]
+    for row in userWorksIn:
+        myprojs.append(Project.query.filter_by(projID=row.projID).one().name)
+        
+    if request.method=="GET":
+        return render_template("ManagePr.html",applicationsTo=appTo, applicationsFrom=appFrom,myProj=myprojs)
+    
+    else:
+        for app in appFrom:
+            if 'accept-btn '+str(app[1]) not in request.form.keys():
+                continue
+            if request.form['accept-btn '+str(app[1])]:
+                appFrom.remove(app)
+                #Adjust DB
+                #ProjID and UserID:
+                applicantUserID=User.query.filter_by(name=app[1]).first().userID
+                applicantProjID=Project.query.filter_by(name=app[0]).first().projID
+                row=AppliedTo.query.filter_by(userID=applicantUserID, projID=applicantProjID).first()
+                row.pendingConfirmation=False
+                row.accepted=True
+                db.session.merge(row)
+                db.session.flush()
+                db.session.commit()
+                break
+            elif request.button['reject-btn '+str(app[1])]:
+                appFrom.remove(app)
+                #Adjust DB
+                #ProjID and UserID:
+                applicantUserID=User.query.filter_by(name=app[1]).first().userID
+                applicantProjID=Project.query.filter_by(name=app[0]).first().projID
+                row=AppliedTo.query.filter_by(userID=applicantUserID, projID=applicantProjID).first()
+                row.pendingConfirmation=False
+                row.accepted=False
+                db.session.merge(row)
+                db.session.flush()
+                db.session.commit()
+                break
+        db.session.commit()
+        return render_template("ManagePr.html",applicationsTo=appTo, applicationsFrom=appFrom,myProj=myprojs)
+        
+        
 
 @app.route("/")
 def homedefault():
@@ -246,4 +307,4 @@ def projectsLoggedIn(us):
 
 if __name__ == '__main__':
     
-    app.run(debug=True,port=80)
+    app.run(debug=True,port=5000)
