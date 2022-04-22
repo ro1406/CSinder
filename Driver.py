@@ -18,6 +18,10 @@ db = SQLAlchemy(app)
 def home():
    return render_template("Home.html")
 
+@app.route("/About")
+def about():
+   return render_template("About.html")
+
 @app.route("/")
 def homedefault():
    return redirect(url_for('home'))
