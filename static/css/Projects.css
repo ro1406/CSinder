@@ -1,3 +1,4 @@
+
  .u-section-1 {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   animation: gradient 15s ease infinite;
@@ -19,8 +20,8 @@ a{
   background-color:#478ac9;
 }
 p{
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 .u-section-1 .u-sheet-1 {
   min-height: 1526px;
@@ -42,7 +43,7 @@ p{
 }
 
 .u-section-1 .u-text-1 {
-  margin-top: 29px;
+  margin-top: 10px;
   font-weight: 700;
   margin-bottom: 0;
 }
