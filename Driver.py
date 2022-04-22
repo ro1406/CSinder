@@ -11,7 +11,7 @@ import random
 from random import randrange
 
 
-from Models import User,Project,ProjLang,ProjectAreas
+from Models import User,Project,ProjLang,ProjectAreas,InterestedIn,CodesIn
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///CSinder.db'
@@ -165,8 +165,54 @@ def projectsLoggedIn(us):
     if request.method=='GET':
         #Query DB and send in list of all projects into the html file:
         projs=Project.query.order_by(Project.name).all() #Add some ranking later
+        
+        allAOIs=InterestedIn.query.filter_by(username=us).all()
+        AOIs=[x.areaOfInterest for x in allAOIs]
+        
+        allLangs=CodesIn.query.filter_by(username=us).all()
+        langs=[x.language for x in allLangs]
+        
+        yoe=User.query.filter_by(username=us).one().experience
+                
+        projRanks=[] #[Proj Object, score]
+        #Adding some ranking system:
+        for proj in projs:
+            #Get Areas,Langs,difficulty
+            paoi=ProjectAreas.query.filter_by(projID=proj.projID).all()
+            projAOI=[x.areaOfInterest for x in paoi]
+            
+            plang=ProjLang.query.filter_by(projID=proj.projID).all()
+            projLang=[x.langauge for x in plang]
+            
+            difficulty=Project.query.filter_by(projID=proj.ID).one().difficulty
+            
+            #Check for matches:
+            score=0
+            #Check AOIS:
+            for aoi in AOIs:
+                if aoi in projAOI:
+                    score+=3
+            
+            #Check Langs:
+            for lang in langs:
+                if lang in projLang:
+                    score+=1
+            #Check difficulty:
+            if yoe<=1 and difficulty in [1,2]:
+                score+=2
+            elif 1<=yoe<=2 and difficulty in [2,3]:
+                score+=2
+            elif 2<=yoe<=4 and difficulty in [3,4]:
+                score+=2
+            elif yoe>=5 and difficulty in [4,5]:
+                score+=2
+            
+            projRanks.append([proj,score])
+        
+        projRanks.sort(key=lambda x:(x[1],x[0].name),reverse=True)
+        
         result=[]
-        for p in projs:
+        for p,s in projRanks:
             temp=[p.name,p.description,p.difficulty,p.github]#name,desc,difficulty, github, languages, creatorID
             languages=ProjLang.query.filter_by(projID=p.projID).all()
             temp.append(','.join(languages)) #make it a single string
@@ -175,7 +221,9 @@ def projectsLoggedIn(us):
             temp.append(creator.name)
             result.append(temp)
         
+        
         return render_template("ProjectsLoggedIn.html",allprojs=result,username=us)
+    
     else:    
         searchterm=request.form['searchbar']
         #Search by area for demo.. later search by name, description, and language

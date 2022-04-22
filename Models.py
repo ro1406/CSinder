@@ -139,7 +139,16 @@ if __name__ == '__main__':
     # user5 = User(name="John Smith",username="JohnWon",password="12345",userID="U81313",email="WangDang@gmail.com",experience=5)
     # user6 = user4 = User(name="Jennifer",username="Jennifer123",password="12333",userID="U78789",email="Jenni@gmail.com",experience=3)
     
-    #db.session.add_all([user4 ])
+    db.session.add_all([user1,user2,user3,user4 ])
+    
+    user5 = User(name="John Smith",username="JohnWon",password="12345",userID="U81313",email="WangDang@gmail.com",experience=5)
+    user6 = User(name="Jennifer",username="Jennifer123",password="12333",userID="U78789",email="Jenni@gmail.com",experience=3)
+    user7 = User(name="Jack Harlow",username="jjhlow",password="12345",userID="U88233",email="jackwack@gmail.com",experience=5)
+    user8 = User(name="Lil Nas X",username="lilnax",password="1234",userID="U77722",email="lilnas@gmail.com",experience=5)
+    user9 = User(name="Sam Smith",username="singerwinger",password="1234",userID="U22223",email="samsmith@gmail.com",experience=5)
+    user10 = User(name="Drake Bake",username="aubreydrake",password="1234",userID="U88882",email="drake@gmail.com",experience=5)
+    
+    db.session.add_all([user5, user6, user7, user8, user9, user10 ])
     
     ''' MANY TO MANY RELATIONSHIPS '''
     # user.workedOn.append(proj1)
@@ -170,10 +179,95 @@ if __name__ == '__main__':
     
     
     '''Interested In'''
-    # interest=InterestedIn(userID='U12345',areaOfInterest="Machine Learning")
-    # db.session.add(interest)
-    # db.session.commit()
+    interest1 = InterestedIn(userID='U82222',areaOfInterest="Machine Learning")
+    interest2 = InterestedIn(userID='U11111',areaOfInterest="Artificial Intelligence")
+    interest3 = InterestedIn(userID='U11223',areaOfInterest="Back-End Development")
+    interest4 = InterestedIn(userID='U82222',areaOfInterest="Computer Networks")
+    interest5 = InterestedIn(userID='U12345',areaOfInterest="Computer Graphics")
+    interest6 = InterestedIn(userID='U11223',areaOfInterest="Computer Systems")
+    interest7 = InterestedIn(userID='U82222',areaOfInterest="Cybersecurity")
+    interest8 = InterestedIn(userID='U12345',areaOfInterest="Cryptography")
+    interest9 = InterestedIn(userID='U11111',areaOfInterest="Cloud Computing")
+    interest10 = InterestedIn(userID='U82222',areaOfInterest="Computer Human Interface")
+    interest11 = InterestedIn(userID='U11223',areaOfInterest="Data Science")
+    interest12 = InterestedIn(userID='U11111',areaOfInterest="Full-Stack Development")
+    interest13 = InterestedIn(userID='U82222',areaOfInterest="Front-End Development")
+    interest14 = InterestedIn(userID='U12345',areaOfInterest="Game Design")
+    interest15 = InterestedIn(userID='U11223',areaOfInterest="Information Security")
+    interest16 = InterestedIn(userID='U82222',areaOfInterest="Programming Languages")
+    interest17  = InterestedIn(userID='U12345',areaOfInterest="Mobile Application Design")
+    interest18 = InterestedIn(userID='U11223',areaOfInterest="Neural Networks")
+    interest19 = InterestedIn(userID='U82222',areaOfInterest="Software Engineering")
+    interest20 = InterestedIn(userID='U11111',areaOfInterest="Theory")
+     
+    db.session.add_all([interest1, interest2, interest3, interest4, interest5, interest6, interest7, interest8, interest9, interest10, interest11, interest12,interest13,interest14,interest15,interest16,interest17,interest18,interest19,interest20])
+
+
+    '''Codes In'''
+    programsin1 = CodesIn(userID='U82222',language="ASP")
+    programsin2 = CodesIn(userID='U11111',language="C")
+    programsin3 = CodesIn(userID='U11223',language="C#")
+    programsin4 = CodesIn(userID='U82222',language="C++")
+    programsin5 = CodesIn(userID='U12345',language="Objective C")
+    programsin6 = CodesIn(userID='U11223',language="Erlang")
+    programsin7 = CodesIn(userID='U82222',language="Git")
+    programsin8 = CodesIn(userID='U12345',language="Go")
+    programsin9 = CodesIn(userID='U11111',language="Haskell")
+    programsin10 = CodesIn(userID='U82222',language="HTML")
+    programsin11 = CodesIn(userID='U11223',language="Java")
+    programsin12 = CodesIn(userID='U11111',language="Javascript")
+    programsin13 = CodesIn(userID='U82222',language="LaTeX")
+    programsin14 = CodesIn(userID='U12345',language="Lisp")
+    programsin15 = CodesIn(userID='U11223',language="MATLAB")
+    programsin16 = CodesIn(userID='U82222',language="Perl")
+    programsin17 = CodesIn(userID='U12345',language="PHP")
+    programsin18 = CodesIn(userID='U11223',language="Python")
+    programsin19 = CodesIn(userID='U82222',language="R")
+    programsin20 = CodesIn(userID='U11111',language="SQL")
+
+    db.session.add_all([programsin2, programsin3, programsin4, programsin5, programsin6, programsin7, programsin8, programsin9, programsin10, programsin11, programsin12, programsin13,programsin14,programsin1,programsin15,programsin16,programsin17,programsin18,programsin19,programsin20])
     
+    
+    user1.workedOn.append(proj1)
+    user1.worksIn.append(proj2)
+    user1.worksIn.append(proj3)
+    user2.workedOn.append(proj2)
+    user3.workedOn.append(proj1)
+    user3.workedOn.append(proj3)
+    user4.workedOn.append(proj5)
+    user4.workedOn.append(proj6)
+    user4.workedOn.append(proj7)
+
+    user1.worksIn.append(proj6)
+    user1.worksIn.append(proj7)
+    user1.worksIn.append(proj5)
+    
+    projecthasarea1 = ProjectAreas(projID='P84282',areaOfInterest="Machine Learning")
+    projecthasarea2 = ProjectAreas(projID='P93882',areaOfInterest="Artificial Intelligence")
+    projecthasarea3 = ProjectAreas(projID='P98387',areaOfInterest="Back-End Development")
+    projecthasarea4 = ProjectAreas(projID='P84282',areaOfInterest="Computer Networks")
+    projecthasarea5 = ProjectAreas(projID='P93882',areaOfInterest="Computer Graphics")
+    projecthasarea6 = ProjectAreas(projID='P88772',areaOfInterest="Computer Systems")
+    projecthasarea7 = ProjectAreas(projID='P84282',areaOfInterest="Cybersecurity")
+    projecthasarea8 = ProjectAreas(projID='P98387',areaOfInterest="Cryptography")
+    projecthasarea9 = ProjectAreas(projID='P56352',areaOfInterest="Cloud Computing")
+    projecthasarea10 = ProjectAreas(projID='P88372',areaOfInterest="Computer Human Interface")
+    projecthasarea11 = ProjectAreas(projID='P84282',areaOfInterest="Data Science")
+    projecthasarea12 = ProjectAreas(projID='P55442',areaOfInterest="Theory")
+
+    db.session.add_all([projecthasarea1, projecthasarea2, projecthasarea3, projecthasarea4, projecthasarea5, projecthasarea6, projecthasarea7, projecthasarea8, projecthasarea9, projecthasarea10, projecthasarea11, projecthasarea12])
+    
+    applied1 = AppliedTo(userID = "U81313", projID = "P93882")
+    applied2 = AppliedTo(userID = "U81313", projID = "P88772")
+    applied3 = AppliedTo(userID = "U88233", projID = "P55442")
+    applied4 = AppliedTo(userID = "U77722", projID = "P93882")
+    applied5 = AppliedTo(userID = "U22223", projID = "P84282")
+    applied6 = AppliedTo(userID = "U88882", projID = "P93882")
+     
+    db.session.add_all([applied1, applied2, applied3, applied4, applied6, applied5 ])
+    
+    
+    db.session.commit()
     
     '''Update record'''
     #u=User.query.filter_by(userID='U12345').first()
