@@ -22,6 +22,10 @@ def home():
 def about():
    return render_template("About.html")
 
+@app.route("/Manage")
+def manage():
+   return render_template("ManagePr.html")
+
 @app.route("/")
 def homedefault():
    return redirect(url_for('home'))

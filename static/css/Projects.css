@@ -18,6 +18,10 @@
 a{
   background-color:#478ac9;
 }
+p{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .u-section-1 .u-sheet-1 {
   min-height: 1526px;
 }
