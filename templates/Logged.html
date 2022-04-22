@@ -12,12 +12,19 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/style2.css')}}">
+
 </head>
+<header>
+    <div class="topnav">
+        <img class="u-expanded-height u-image u-image-default u-preserve-proportions u-image-1" src="{{url_for('static', filename='images/61a4b5b8907749e29dac4861893bbcca1.png')}}" alt="" data-image-width="200" data-image-height="99">
+            <a class="active">Profile</a>
+            <a href="{{url_for('projects')}}">Projects</a>
+            <a href="{{url_for('manage')}}">Project Management</a>
+      </div>
+</header>
+
 <body>
-
     <div class="main">
-
-        <div class="container">
             <div class="signup-content">
                 <div class="signup-img">
                     <div class = "backimg"></div>
