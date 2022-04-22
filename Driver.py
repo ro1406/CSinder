@@ -26,8 +26,8 @@ def about():
    return render_template("About.html")
 
 @app.route("/Manage",methods=["GET","POST"])
-def manage(): #Put us in here
-    us='U11223'
+def manage(us): #Put us in here
+    #us='U11223'
     appsTo=AppliedTo.query.filter_by(userID=us).all() #Object of AppliedTo
     appTo=[] #[[projName,PendingConfirmation?]]
     for a in appsTo:
@@ -157,13 +157,13 @@ def checkLogin():
        dbUser=User.query.filter_by(username=us).one()
        if dbUser is not None:
            if dbUser.username==us and dbUser.password==pwd:
-               return redirect(url_for('profile',us=us))
+               return redirect(url_for('profile',us=User.query.filter_by(username=us).first().userID))
        return redirect(url_for('error'))
 
 #Account page needs to be customizable
 @app.route("/Account/<us>")
 def profile(us):
-    profile=User.query.filter_by(username=us)
+    profile=User.query.filter_by(userID=us)
     
     return render_template("Logged.html",profile=profile)
 
@@ -191,7 +191,7 @@ def checkregistration():
 @app.route("/createProject",methods=['GET',"POST"])
 def createProject(us):
     if request.method=="GET":
-        return render_template("CreateProject.html",username=us)
+        return render_template("CreateProject.html",userID=us)
     else:
         name=request.form['title']
         #creatorName=request.form['creator'] #Find their ID and update all tables
@@ -210,7 +210,7 @@ def createProject(us):
             ProjID = "P" + str(randrange(10000, 99999))
                 
         #Get record of creator
-        user1=User.query.filter_by(username=us).one()
+        user1=User.query.filter_by(userID=us).one()
         
         newProj=Project(name=name,projID=ProjID,description=desc,difficulty=3,user=user1,github=github) 
         area=ProjectAreas(projID=ProjID,areaOfInterest=choice)
@@ -222,7 +222,7 @@ def createProject(us):
         
         db.session.add(newProj)
         db.session.commit()
-        return redirect(url_for('projectsLoggedIn'),username=us)
+        return redirect(url_for('projectsLoggedIn'),userID=us)
         
 
 @app.route("/Projects/<us>",methods=['GET',"POST"])
@@ -231,10 +231,10 @@ def projectsLoggedIn(us):
         #Query DB and send in list of all projects into the html file:
         projs=Project.query.order_by(Project.name).all() #Add some ranking later
         
-        allAOIs=InterestedIn.query.filter_by(username=us).all()
+        allAOIs=InterestedIn.query.filter_by(userID=us).all()
         AOIs=[x.areaOfInterest for x in allAOIs]
         
-        allLangs=CodesIn.query.filter_by(username=us).all()
+        allLangs=CodesIn.query.filter_by(userID=us).all()
         langs=[x.language for x in allLangs]
         
         yoe=User.query.filter_by(username=us).one().experience
@@ -287,7 +287,7 @@ def projectsLoggedIn(us):
             result.append(temp)
         
         
-        return render_template("ProjectsLoggedIn.html",allprojs=result,username=us)
+        return render_template("ProjectsLoggedIn.html",allprojs=result,userID=us)
     
     else:    
         searchterm=request.form['searchbar']
@@ -303,7 +303,7 @@ def projectsLoggedIn(us):
             temp.append(creator.name)
             result.append(temp)
         
-        return render_template("ProjectsLoggedIn.html",allprojs=result,username=us)
+        return render_template("ProjectsLoggedIn.html",allprojs=result,userID=us)
 
 if __name__ == '__main__':
     
