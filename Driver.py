@@ -97,9 +97,9 @@ def checkLogin():
        return redirect(url_for('error'))
 
 #Account page needs to be customizable
-@app.route("/Account/<us>")
-def profile(us):
-    profile=User.query.filter_by(username=us)
+@app.route("/Account/ro")
+def profile():
+    profile=User.query.filter_by(username="ro")
     
     return render_template("Account-Page.html",profile=profile)
 
