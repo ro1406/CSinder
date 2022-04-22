@@ -30,17 +30,17 @@
                 </div>
                 <div class="signup-form">
                     <button onclick="window.location.href = '{{url_for('projects')}}'" class="exit_btn">X</button>
-                    <form method="POST" class="register-form" id="register-form">
+                    <form method="POST" action="{{url_for('createProject')}}" class="register-form" id="register-form">
                         <div class="form-row">
                             <div class="form-group">
                                 <div class="form-input">
                                     <label for="title">Project Title</label>
                                     <input type="text" name="title" id="title" />
                                 </div>
-                                <div class="form-input">
+                                <!--<div class="form-input">
                                     <label for="creator">Creator/Company</label>
                                     <input type="text" name="creator" id="creator" />
-                                </div>
+                                </div>-->
                                 <div class="form-input">
                                     <label for="Github">Github Repository</label>
                                     <input type="text" name="Github" id="Github" />
@@ -57,7 +57,7 @@
                                             <option value="DS">Data Science</option>
                                             <option value="WD">Web Development</option>
                                             <option value="AD">Algorithm Development</option>
-
+                                            <option value="ML">Machine Learning</option>
                                         </select>
                                     </div>
                                 </div>
