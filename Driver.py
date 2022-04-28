@@ -108,7 +108,7 @@ def projects():
         for p in projs:
             temp=[p.name,p.description,p.difficulty,p.github]#name,desc,difficulty,github, languages, creatorID
             languages=ProjLang.query.filter_by(projID=p.projID).all()
-            temp.append(','.join(languages)) #make it a single string
+            temp.append(','.join([x.language for x in languages])) #make it a single string
             
             creator=User.query.filter_by(userID=p.creatorID).one()
             temp.append(creator.name)
@@ -122,9 +122,9 @@ def projects():
         projs=Project.query.filter_by(name=searchterm).all()
         result=[]
         for p in projs:
-            temp=[p.name,p.description,p.difficulty]#name,desc,difficulty, languages, creatorID
+            temp=[p.name,p.description,p.difficulty,p.github]#name,desc,difficulty, languages, creatorID
             languages=ProjLang.query.filter_by(projID=p.projID).all()
-            temp.append(','.join(languages)) #make it a single string
+            temp.append(','.join([x.language for x in languages])) #make it a single string
             
             creator=User.query.filter_by(userID=p.creatorID).one()
             temp.append(creator.name)
@@ -248,7 +248,7 @@ def projectsLoggedIn(us):
             projAOI=[x.areaOfInterest for x in paoi]
             
             plang=ProjLang.query.filter_by(projID=proj.projID).all()
-            projLang=[x.langauge for x in plang]
+            projLang=[x.language for x in plang]
             
             difficulty=Project.query.filter_by(projID=proj.projID).one().difficulty
             
@@ -281,7 +281,7 @@ def projectsLoggedIn(us):
         for p,s in projRanks:
             temp=[p.name,p.description,p.difficulty,p.github]#name,desc,difficulty, github, languages, creatorID
             languages=ProjLang.query.filter_by(projID=p.projID).all()
-            temp.append(','.join(languages)) #make it a single string
+            temp.append(','.join([x.language for x in languages])) #make it a single string
             
             creator=User.query.filter_by(userID=p.creatorID).one()
             temp.append(creator.name)
@@ -296,9 +296,9 @@ def projectsLoggedIn(us):
         projs=Project.query.filter_by(name=searchterm).all()
         result=[]
         for p in projs:
-            temp=[p.name,p.description,p.difficulty]#name,desc,difficulty, languages, creatorID
+            temp=[p.name,p.description,p.difficulty,p.github]#name,desc,difficulty, github, languages, creatorID
             languages=ProjLang.query.filter_by(projID=p.projID).all()
-            temp.append(','.join(languages)) #make it a single string
+            temp.append(','.join([x.language for x in languages])) #make it a single string
             
             creator=User.query.filter_by(userID=p.creatorID).one()
             temp.append(creator.name)

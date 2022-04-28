@@ -285,6 +285,7 @@ if __name__ == '__main__':
     projlang19 = ProjLang(projID='P55442',language="R")
     projlang20 = ProjLang(projID='P84282',language="SQL")
     
+    db.session.add_all([projlang1,projlang2,projlang3,projlang4,projlang5,projlang6,projlang7,projlang8,projlang9,projlang10,projlang11,projlang12,projlang13,projlang14,projlang15,projlang16,projlang17,projlang18,projlang19,projlang20])
     db.session.commit()
     
     '''Update record'''

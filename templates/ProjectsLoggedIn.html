@@ -58,8 +58,15 @@
     <section class="u-clearfix u-gradient u-section-1" id="sec-f665">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-expanded-width u-list u-list-1">
+
           <div>
-            <input class = "search_bar" type="text" placeholder="Search..">
+            <form method="post" action="{{url_for('projects')}}">
+            <input name="searchbar" class = "search_bar" type="text" placeholder="Search...">
+            <input type="submit" class="btn btn-info"></input>
+            </form>
+            </div>
+          <div>
+          
             <button onclick="window.location.href = '{{url_for('createProject',us=userID)}}'" class = "create_btn"><i class="fa fa-plus"></i>    Create Project</button>
             </div>
 
@@ -84,9 +91,10 @@
                   <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-1"></div>
                   <p class="u-text u-text-default u-text-2">{{proj[1]}}</p>
                   <p>Difficulty: {{proj[2]}}</p>
-                  <p>Required Languages: {{proj[3]}}</p>
-                  <p>Creator: {{proj[4]}}</p>
-                  <a href="" class="u-btn u-button-style u-btn-1">learn more</a>
+                  <p>Github: {{proj[3]}}</p>
+                  <p>Required Languages: {{proj[4]}}</p>
+                  <p>Creator: {{proj[5]}}</p>
+                  <a href="" class="u-btn u-button-style u-btn-1">Apply</a>
                 </div>
               </div>
               {% endfor %}
