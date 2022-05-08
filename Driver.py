@@ -117,7 +117,7 @@ def projects():
         return render_template("Projects.html",allprojs=result)
     else:
         searchterm=request.form['searchbar']
-        #Search by area for demo.. later search by name, description, and language
+        #Search by area, search by name, description, and language
         
         projs=Project.query.filter_by(name=searchterm).all()
         result=[]
@@ -160,7 +160,7 @@ def checkLogin():
                return redirect(url_for('profile',us=User.query.filter_by(username=us).first().userID))
        return redirect(url_for('error'))
 
-#Account page needs to be customizable
+
 @app.route("/Account/<us>")
 def profile(us):
     profile=User.query.filter_by(userID=us).first()
@@ -230,7 +230,7 @@ def createProject(us):
 def projectsLoggedIn(us):
     if request.method=='GET':
         #Query DB and send in list of all projects into the html file:
-        projs=Project.query.order_by(Project.name).all() #Add some ranking later
+        projs=Project.query.order_by(Project.name).all()
         
         allAOIs=InterestedIn.query.filter_by(userID=us).all()
         AOIs=[x.areaOfInterest for x in allAOIs]
@@ -292,7 +292,7 @@ def projectsLoggedIn(us):
     
     else:    
         searchterm=request.form['searchbar']
-        #Search by area for demo.. later search by name, description, and language
+        #Search by area, search by name, description, and language
         projs=Project.query.filter_by(name=searchterm).all()
         result=[]
         for p in projs:
